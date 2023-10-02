@@ -1,11 +1,11 @@
 <template>
     <header class="d-flex bg-light justify-content-between">
         <menu class="d-flex justify-content-center">
-            <router-link to="" class="nav-link p-2">Home</router-link>
-            <router-link to="" class="nav-link p-2">Prices</router-link>
-            <router-link to="" class="nav-link p-2">Offers</router-link>
-            <router-link to="" class="nav-link p-2">Users</router-link>
-            <router-link to="" class="nav-link p-2">Orders</router-link>
+            <router-link :to="{name: 'pages.home'}" class="nav-link p-2">Home</router-link>
+            <router-link :to="{name: 'pages.prices'}" class="nav-link p-2">Prices</router-link>
+            <router-link :to="{name: 'pages.offers'}" class="nav-link p-2">Offers</router-link>
+            <router-link :to="{name: 'pages.users'}" class="nav-link p-2">Users</router-link>
+            <router-link :to="{name: 'pages.orders'}" class="nav-link p-2">Orders</router-link>
         </menu>
         <menu class="d-flex justify-content-center">
             <router-link :to="{name: 'user.login'}" class="nav-link p-2">Login</router-link>
