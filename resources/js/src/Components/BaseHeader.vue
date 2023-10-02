@@ -1,16 +1,16 @@
 <template>
     <header class="d-flex bg-light justify-content-between">
         <menu class="d-flex justify-content-center">
-            <router-link :to="{name: 'pages.home'}" class="nav-link p-2">Home</router-link>
-            <router-link :to="{name: 'pages.prices'}" class="nav-link p-2">Prices</router-link>
-            <router-link :to="{name: 'pages.offers'}" class="nav-link p-2">Offers</router-link>
-            <router-link :to="{name: 'pages.users'}" class="nav-link p-2">Users</router-link>
-            <router-link :to="{name: 'pages.orders'}" class="nav-link p-2">Orders</router-link>
+            <router-link v-if="token" :to="{name: 'pages.home'}" class="nav-link p-2">Home</router-link>
+            <router-link v-if="token" :to="{name: 'pages.prices'}" class="nav-link p-2">Prices</router-link>
+            <router-link v-if="token" :to="{name: 'pages.offers'}" class="nav-link p-2">Offers</router-link>
+            <router-link v-if="token" :to="{name: 'pages.users'}" class="nav-link p-2">Users</router-link>
+            <router-link v-if="token" :to="{name: 'pages.orders'}" class="nav-link p-2">Orders</router-link>
         </menu>
         <menu class="d-flex justify-content-center">
-            <router-link :to="{name: 'user.login'}" class="nav-link p-2">Login</router-link>
-            <router-link :to="{name: 'user.register'}" class="nav-link p-2">Register</router-link>
-            <a @click.prevent="logout" class="nav-link p-2">Logout</a>
+            <router-link v-if="!token" :to="{name: 'user.login'}" class="nav-link p-2">Login</router-link>
+            <router-link v-if="!token" :to="{name: 'user.register'}" class="nav-link p-2">Register</router-link>
+            <a v-if="token" @click.prevent="logout" class="nav-link p-2">Logout</a>
         </menu>
     </header>
 </template>
@@ -19,6 +19,19 @@
 
 export default {
     name: "BaseHeader",
+    data() {
+        return {
+            token: null
+        }
+    },
+    mounted() {
+        this.getToken()
+    },
+
+    updated() {
+        this.getToken()
+    },
+
     methods: {
         logout() {
             axios.post('/logout')
@@ -27,6 +40,9 @@ export default {
                     this.$router.push({name: 'user.login'})
                 })
         },
+        getToken() {
+            this.token = localStorage.getItem('x_xsrf_token');
+        }
     }
 }
 </script>
