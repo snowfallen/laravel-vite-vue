@@ -48,8 +48,11 @@ export default {
                         password_confirmation: this.password_confirmation
                     })
                         .then(response => {
-                            console.log(response.config.headers['X-XSRF-TOKEN'])
-                        })
+                            localStorage.setItem('x_xsrf_token', response.config.headers['X-XSRF-Token']);
+                            this.$router.push({name: 'pages.home'});
+                        }).catch(error => {
+                        console.log(error.response.data.message)
+                    })
                 })
         }
     }
