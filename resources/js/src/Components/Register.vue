@@ -1,9 +1,29 @@
 <template>
-    <input v-model="name" type="text" placeholder="name">
-    <input v-model="email" type="email" placeholder="email">
-    <input v-model="password" type="password" placeholder="password">
-    <input v-model="password_confirmation" type="password" placeholder="password_confirmation">
-    <input @click.prevent="login" type="submit" value="login">
+    <div class="container">
+        <form class="m-5">
+            <div class="form-group pb-2">
+                <label for="name" class="pb-2">Name</label>
+                <input v-model="name" type="name" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div class="form-group pb-2">
+                <label for="email" class="pb-2">Email address</label>
+                <input v-model="email" type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                       placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+            <div class="form-group pb-2">
+                <label for="password" class="pb-2">Password</label>
+                <input v-model="password" type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="form-group pb-2">
+                <label for="password_confirmation" class="pb-2">Confirm Password</label>
+                <input v-model="password_confirmation" type="password" class="form-control" id="password_confirmation"
+                       placeholder="Confirm Password">
+            </div>
+            <button @click.prevent="register" type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
 </template>
 
 <script>
@@ -18,10 +38,15 @@ export default {
         }
     },
     methods: {
-        login() {
+        register() {
             axios.get('/sanctum/csrf-cookie')
                 .then(response => {
-                    axios.post('/register', {name: this.name, email: this.email, password: this.password, password_confirmation: this.password_confirmation})
+                    axios.post('/register', {
+                        name: this.name,
+                        email: this.email,
+                        password: this.password,
+                        password_confirmation: this.password_confirmation
+                    })
                         .then(response => {
                             console.log(response.config.headers['X-XSRF-TOKEN'])
                         })
