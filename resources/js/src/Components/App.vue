@@ -5,6 +5,7 @@
 
 <script>
 import Header from "./Header.vue";
+
 export default {
     name: "App",
     components: {
@@ -15,5 +16,10 @@ export default {
 </script>
 
 <style scoped>
-
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+}
 </style>
