@@ -19,19 +19,23 @@ use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 |
 */
 
-//Auth::routes();
+Auth::routes();
 
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/register', [RegisterController::class, 'register']);
 
-Route::post('/logout', [LoginController::class, 'logout'])
-    ->name('logout');
-
-Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])
-    ->name('password.email');
-
-Route::post('/password/reset', [ResetPasswordController::class, 'reset'])
-    ->name('password.update');
-
-Route::get('sanctum/csrf-cookie', [CsrfCookieController::class, 'show'])
-    ->name('sanctum.csrf-cookie');
+//Route::post('/login', [LoginController::class, 'login']);
+//Route::post('/register', [RegisterController::class, 'register']);
+//
+//Route::post('/logout', [LoginController::class, 'logout'])
+//    ->name('logout');
+//
+//Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])
+//    ->name('password.email');
+//
+//Route::post('/password/reset', [ResetPasswordController::class, 'reset'])
+//    ->name('password.update');
+//
+//Route::get('sanctum/csrf-cookie', [CsrfCookieController::class, 'show'])
+//    ->name('sanctum.csrf-cookie');
+//
+Route::get('{page}',fn () => view('app'))
+    ->where('page', '.*');
