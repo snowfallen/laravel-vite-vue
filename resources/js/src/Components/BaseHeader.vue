@@ -18,7 +18,7 @@
 <script>
 
 export default {
-    name: "Header",
+    name: "BaseHeader",
     methods: {
         logout() {
             axios.post('/logout')

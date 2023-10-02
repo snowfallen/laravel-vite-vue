@@ -1,5 +1,5 @@
-import Login from "../Components/Login.vue";
-import Register from "../Components/Register.vue";
+import Login from "../Components/Auth/Login.vue";
+import Register from "../Components/Auth/Register.vue";
 
 const routes = [
     {

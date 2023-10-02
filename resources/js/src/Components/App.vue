@@ -1,15 +1,15 @@
 <template>
-    <Header></Header>
+    <BaseHeader></BaseHeader>
     <router-view/>
 </template>
 
 <script>
-import Header from "./Header.vue";
+import BaseHeader from "./BaseHeader.vue";
 
 export default {
     name: "App",
     components: {
-        Header
+        BaseHeader
     }
 
 }
