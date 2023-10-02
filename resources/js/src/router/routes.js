@@ -1,6 +1,5 @@
 import Login from "../Components/Login.vue";
 import Register from "../Components/Register.vue";
-import Protected from "../Components/Protected.vue";
 
 const routes = [
     {
@@ -13,11 +12,6 @@ const routes = [
         component: Register,
         name: 'user.register'
     },
-    {
-        path: '/protected',
-        component: Protected,
-        name: 'protected'
-    }
 ]
 
 export default routes;

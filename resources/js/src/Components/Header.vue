@@ -1,7 +1,6 @@
 <template>
     <router-link :to="{name: 'user.login'}">Login</router-link>
     <router-link :to="{name: 'user.register'}">Register</router-link>
-    <router-link :to="{name: 'protected'}">Protected</router-link>
     <a @click.prevent="logout">Logout</a>
 </template>
 
