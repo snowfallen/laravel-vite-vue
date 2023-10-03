@@ -6,20 +6,27 @@
 
 import axios from 'axios';
 import router from "./src/router/router.js";
+import store from "./store.js";
 
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.withCredentials = true;
 window.axios.interceptors.response.use({}, reject => {
-    if(reject.response.status === 401 || reject.response.status === 419) {
-        const token = localStorage.getItem('x_xsrf_token')
+    if (reject.response.status === 401 || reject.response.status === 419) {
+        const token = store.state.token
 
         if (token) {
-            localStorage.removeItem('x_xsrf_token')
+            store.commit('deleteToken')
         }
 
         router.push({name: 'user.login'})
+    }
+    if (reject.response.status === 422) {
+        console.log(reject.response.data.message)
+    }
+    if (reject.response.status === 429) {
+        console.log(reject.response.data.message)
     }
 })
 

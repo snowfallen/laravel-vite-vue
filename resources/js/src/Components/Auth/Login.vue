@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import store from "../../../store.js";
+
 export default {
     name: "Login",
     data() {
@@ -32,10 +34,10 @@ export default {
                 .then(response => {
                     axios.post('/login', {email: this.email, password: this.password})
                         .then(response => {
-                            localStorage.setItem('x_xsrf_token', response.config.headers['X-XSRF-Token']);
+                            store.commit('setToken', response.config.headers['X-XSRF-TOKEN'])
                             this.$router.push({name: 'pages.home'});
                         }).catch(error => {
-                        console.log(error.response.data.message)
+                        console.log(error)
                     })
                 })
         }

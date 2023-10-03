@@ -16,32 +16,23 @@
 </template>
 
 <script>
+import store from "../../store.js";
 
 export default {
     name: "BaseHeader",
-    data() {
-        return {
-            token: null
-        }
-    },
-    mounted() {
-        this.getToken()
-    },
-
-    updated() {
-        this.getToken()
-    },
-
     methods: {
         logout() {
             axios.post('/logout')
                 .then(response => {
+                    store.commit('deleteToken')
                     localStorage.removeItem('x_xsrf_token');
                     this.$router.push({name: 'user.login'})
                 })
-        },
-        getToken() {
-            this.token = localStorage.getItem('x_xsrf_token');
+        }
+    },
+    computed: {
+        token () {
+            return store.state.token
         }
     }
 }
